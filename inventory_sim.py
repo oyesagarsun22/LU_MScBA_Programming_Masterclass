@@ -62,13 +62,13 @@ def inventory_simulation(capacity,reorder_level,reps,seed=None):
             stockout = 1 if demand > inventory else 0
             
             # update the inventory
-            inventory = min(inventory - demand, 0)
+            inventory = max(inventory - demand,0)
             
             # are any orders needed
             if inventory <= reorder_level:
                 order_size = capacity - inventory
                 order_cost = fixed_cost + order_size*unit_cost
-                
+                inventory = capacity
             else:
                 order_cost = 0
             
@@ -78,7 +78,7 @@ def inventory_simulation(capacity,reorder_level,reps,seed=None):
             # update profit
             profit += revenue - order_cost - holding_cost - stockout*stockout_cost
             
-        output.append(profit)
+            output.append(profit)
     
     return(output)
                 
