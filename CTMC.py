@@ -82,7 +82,7 @@ def store_probs(store, current_probabilities):
 
     # store new state in trace
     for i in range(n):
-        store[i].append(current_probabilities[0,0])
+        store[i].append(current_probabilities[0,i])
 
 # try it out
 Q = np.matrix([[-3,1.5,1.5],
